@@ -3,18 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const ModalSlice = createSlice({
     name: 'Modal',
     initialState: {
-        profileModalVisibility:false,
-        logoutModalVisibility:false,
+        profileModalVisibility: false,
+        languageModalVisibility: false,
     },
-    reducers:{
-       switchProfileModalVisibility: (state)=>{
+    reducers: {
+        switchProfileModalVisibility: (state) => {
             state.profileModalVisibility = !state.profileModalVisibility
         },
-       switchLogoutModalVisibility: (state)=>{
-            state.logoutModalVisibility = !state.logoutModalVisibility
+        switchLanguageModalVisibility: (state) => {
+            state.languageModalVisibility = !state.languageModalVisibility
         }
     }
 })
 
-export const {switchProfileModalVisibility,switchLogoutModalVisibility} = ModalSlice.actions;
+export const { switchProfileModalVisibility, switchLanguageModalVisibility } = ModalSlice.actions;
 export default ModalSlice.reducer

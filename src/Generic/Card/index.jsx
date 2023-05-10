@@ -1,11 +1,11 @@
 import React from 'react'
 import { Image, Title, Wrapper } from './style'
 
-const Card = ({title,image}) => {
+const Card = ({ title, image, onClick }) => {
   return (
-    <Wrapper>
-        <Title>{title}</Title>
-        <Image src={image} alt='Not found!' />
+    <Wrapper onClick={onClick}>
+      <Title>{title}</Title>
+      <Image src={image} alt='Not found!' />
     </Wrapper>
   )
 }

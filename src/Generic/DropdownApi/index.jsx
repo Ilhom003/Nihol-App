@@ -2,53 +2,26 @@ import React from 'react'
 import { SettingOutlined, TranslationOutlined, LogoutOutlined } from '@ant-design/icons';
 import { MenuWrapper } from '../Style';
 import { useDispatch } from 'react-redux';
-import { switchProfileModalVisibility, switchLogoutModalVisibility } from '../../redux/ModalSlice'
-import { ExclamationCircleFilled } from '@ant-design/icons';
-import { Modal } from 'antd';
-import { useSignOut } from 'react-auth-kit';
-import { useNavigate } from 'react-router-dom';
+import { switchProfileModalVisibility, switchLanguageModalVisibility } from '../../redux/ModalSlice'
+import { useTranslation } from 'react-i18next';
 
 
 const useDropDownApi = () => {
-
+    const {t}= useTranslation()
     const dispatch = useDispatch()
-    const { confirm } = Modal;
-    const signOut = useSignOut();
-    const navigate = useNavigate()
-    const logout =()=>{
-        signOut();
-        navigate('/login')
-    }
-
-    const showDeleteConfirm = () => {
-        confirm({
-          title: 'Warning',
-          icon: <ExclamationCircleFilled />,
-          content: 'Are you sure?',
-          okText: 'Log out',
-          okType: 'danger',
-          cancelText: 'Cancel',
-          onOk() {
-            logout()
-          },
-          onCancel() {
-            dispatch(switchLogoutModalVisibility())
-          },
-        });
-      };
-    const navbarDropDown = () => {
+    const navbarDropDown = ({logOutHandler}) => {
         return [
             {
-                label: <MenuWrapper onClick={() => dispatch(switchProfileModalVisibility())} ><SettingOutlined /> Setting</MenuWrapper>,
+                label: <MenuWrapper onClick={() => dispatch(switchProfileModalVisibility())} ><SettingOutlined /> {t('navbar_section.setting')}</MenuWrapper>,
                 key: '0',
             },
             {
-                label: <MenuWrapper><TranslationOutlined /> Change language</MenuWrapper>,
+                label: <MenuWrapper onClick={()=> dispatch(switchLanguageModalVisibility())}><TranslationOutlined />{t('navbar_section.changeLanguage')}</MenuWrapper>,
                 key: '1',
             },
 
             {
-                label: <MenuWrapper isDanger={true} onClick={() =>showDeleteConfirm()}><LogoutOutlined /> Log out</MenuWrapper>,
+                label: <MenuWrapper isDanger={true} onClick={logOutHandler}><LogoutOutlined /> {t('navbar_section.logOut')}</MenuWrapper>,
                 key: '3',
             },
         ];
