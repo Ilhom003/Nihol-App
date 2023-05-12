@@ -9,7 +9,7 @@ export const en = {
         card_title_report: 'Report',
     },
     navbar_section:{
-        setting:'Setting',
+                setting:'Setting',
         changeLanguage:'Change language',
         logOut:'Log out'
     }
